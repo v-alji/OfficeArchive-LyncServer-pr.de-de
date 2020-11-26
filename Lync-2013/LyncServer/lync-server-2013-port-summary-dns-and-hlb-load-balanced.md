@@ -1,0 +1,130 @@
+---
+title: 'Lync Server 2013: Portzusammenfassung für DNS- und Hardwarelastenausgleich'
+description: 'Lync Server 2013: Port Zusammenfassung – DNS und HLB Load Balanced.'
+ms.reviewer: ''
+ms.author: v-lanac
+author: lanachin
+f1.keywords:
+- NOCSH
+TOCTitle: Port summary - DNS and HLB load balanced
+ms:assetid: b07c37e4-820e-46ee-a678-1da95d1b87af
+ms:mtpsurl: https://technet.microsoft.com/en-us/library/JJ205179(v=OCS.15)
+ms:contentKeyID: 48185149
+ms.date: 07/23/2014
+manager: serdars
+mtps_version: v=OCS.15
+ms.openlocfilehash: be2e8204e792fd9c4718cb9171e90784af2d0104
+ms.sourcegitcommit: 36fee89bb887bea4f18b19f17a8c69daf5bc423d
+ms.translationtype: MT
+ms.contentlocale: de-DE
+ms.lasthandoff: 11/26/2020
+ms.locfileid: "49424338"
+---
+# <a name="port-summary---dns-and-hlb-load-balanced-in-lync-server-2013"></a>Portzusammenfassung für DNS- und Hardwarelastenausgleich in Lync Server 2013
+
+<div data-xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="topic" data-xmlns="http://www.w3.org/1999/xhtml" data-msxsl="urn:schemas-microsoft-com:xslt" data-cs="https://msdn.microsoft.com/">
+
+<div data-asp="https://msdn2.microsoft.com/asp">
+
+
+
+</div>
+
+<div id="mainSection">
+
+<div id="mainBody">
+
+<span> </span>
+
+_**Letztes Änderungsdatum des Themas:** 2012-10-22_
+
+Die Firewall-Portanforderungen für einen einzelnen Director bestehen aus den Ports, die verwendet werden, um die Kommunikation mit dem Director aus der internen Schnittstelle oder dem internen Netzwerk des Reverse-Proxys herzustellen. Microsoft lync Server 2013 erwartet standardmäßig, dass Ports http/TCP 8080 und HTTPS/TCP 4443 vom Reverse-Proxy an den Director sowie den Front-End-Pool und den Front-End-Server geöffnet werden. Darüber hinaus muss die SIP-Kommunikation (Session Initiation Protocol) von der internen Schnittstelle des Edge-Servers mit dem Director und dem Front-End-Pool und dem Front-End-Server erfolgen. Das SIP-Protokoll verwendet SIP/MTLS/TCP 5061 vom Edgeserver auf dem Front-End-Pool und dem Front-End-Server. Eine Regel, die die SIP/MTLS/TCP 5061-Kommunikation vom Director, Front-End-Pool und Front-End-Server zur internen Edge-Server-Schnittstelle ermöglicht, muss ebenfalls erstellt werden.
+
+### <a name="single-director-ports-and-protocols-for-firewall-definitions"></a>Single Director-Ports und-Protokolle für Firewall-Definitionen
+
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Role/Protocol/TCP oder UDP/Port</th>
+<th>Quell-IP-Adresse</th>
+<th>Ziel-IP-Adresse</th>
+<th>Hinweise</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>HTTP/TCP 8080</p></td>
+<td><p>Interne Proxy-Schnittstelle</p></td>
+<td><p>Director Hardware Load Balancer VIP</p></td>
+<td><p>Zunächst von der externen Seite des Reverse-Proxys empfangen, wird die Kommunikation an den Director HLB VIP-und Front-End-Server-Webdienste gesendet.</p></td>
+</tr>
+<tr class="even">
+<td><p>HTTPS/TCP 4443</p></td>
+<td><p>Interne Proxy-Schnittstelle</p></td>
+<td><p>Director Hardware Load Balancer VIP</p></td>
+<td><p>Zunächst von der externen Seite des Reverse-Proxys empfangen, wird die Kommunikation an den Director HLB VIP-und Front-End-Server-Webdienste gesendet.</p></td>
+</tr>
+<tr class="odd">
+<td><p>HTTPS/TCP 444</p></td>
+<td><p>Director</p></td>
+<td><p>Front-End-Pool oder Front-End-Server</p></td>
+<td><p>Kommunikation zwischen Servern zwischen dem Director HLB VIP und dem Front-End-Server oder den Front-End-Servern.</p></td>
+</tr>
+<tr class="even">
+<td><p>HTTP/TCP 80</p></td>
+<td><p>Interne Clients</p></td>
+<td><p>Director Hardware Load Balancer VIP</p></td>
+<td><p>Der Director stellt Webdienste sowohl internen als auch externen Clients zur Verfügung.</p></td>
+</tr>
+<tr class="odd">
+<td><p>HTTPS/TCP 443</p></td>
+<td><p>Interne Clients</p></td>
+<td><p>Director Hardware Load Balancer VIP</p></td>
+<td><p>Der Director stellt Webdienste sowohl internen als auch externen Clients zur Verfügung.</p></td>
+</tr>
+<tr class="even">
+<td><p>SIP/MTLS/TCP 5061</p></td>
+<td><p>Interne Edge-Server-Schnittstelle</p></td>
+<td><p>Director</p></td>
+<td><p>SIP-Kommunikation vom Edgeserver an den Director und die Front-End-Server.</p></td>
+</tr>
+<tr class="odd">
+<td><p>MTLS/TCP/50001</p></td>
+<td><p>Beliebig</p></td>
+<td><p>Director</p></td>
+<td><p>Zentralisierte Protokollierungsdienst Controller (ClsController.exe) oder Agent (ClsAgent.exe)-Befehle und Protokollsammlung</p></td>
+</tr>
+<tr class="even">
+<td><p>MTLS/TCP/50002</p></td>
+<td><p>Beliebig</p></td>
+<td><p>Director</p></td>
+<td><p>Zentralisierte Protokollierungsdienst Controller (ClsController.exe) oder Agent (ClsAgent.exe)-Befehle und Protokollsammlung</p></td>
+</tr>
+<tr class="odd">
+<td><p>MTLS/TCP/50003</p></td>
+<td><p>Beliebig</p></td>
+<td><p>Director</p></td>
+<td><p>Zentralisierte Protokollierungsdienst Controller (ClsController.exe) oder Agent (ClsAgent.exe)-Befehle und Protokollsammlung</p></td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</div>
+
