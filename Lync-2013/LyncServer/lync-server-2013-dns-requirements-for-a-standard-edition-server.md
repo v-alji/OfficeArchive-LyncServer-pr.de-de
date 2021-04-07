@@ -38,15 +38,15 @@ ms.locfileid: "49395027"
 
 <span> </span>
 
-_**Zuletzt geändertes Thema:** 22.02.2013_
+_**Thema Zuletzt geändert:** 22.02.2013_
 
-In diesem Abschnitt werden die DNS (Domain Name System)-Einträge beschrieben, die für die Bereitstellung von Standard -Edition-Servern erforderlich sind.
+In diesem Abschnitt werden die DNS-Einträge (Domain Name System) beschrieben, die für die Bereitstellung von Standard Edition-Servern erforderlich sind.
 
 <div>
 
-## <a name="dns-records-for-standard-edition-servers"></a>DNS Records for Standard Edition Servers
+## <a name="dns-records-for-standard-edition-servers"></a>DNS Records für Standard Edition Servers
 
-In der folgenden Tabelle sind die DNS-Anforderungen für die Serverbereitstellung von Lync Server 2013 Standard Edition aufgeführt.
+In der folgenden Tabelle sind die DNS-Anforderungen für die Serverbereitstellung von Lync Server 2013 Standard Edition angegeben.
 
 
 <table>
@@ -66,16 +66,16 @@ In der folgenden Tabelle sind die DNS-Anforderungen für die Serverbereitstellun
 <td><p>Ein interner A-Eintrag, mit dem der vollqualifizierte Domänenname (Fully Qualified Domain Name, FQDN) des Servers in die zugehörige IP-Adresse aufgelöst wird.</p></td>
 </tr>
 <tr class="even">
-<td><p>Automatische Client anmeldung</p></td>
-<td><p>Für jede unterstützte SIP-Domäne: ein SRV-Eintrag für _sipinternaltls._tcp. &lt; domäne über Port 5061, der dem FQDN des Standard Edition-Servers, der Clientanforderungen für die Anmeldung authentifiziert und &gt; umleitigt, zu ordnet. Details finden Sie unter <a href="lync-server-2013-dns-requirements-for-automatic-client-sign-in.md">den DNS-Anforderungen für die automatische Client anmeldung bei Lync Server 2013.</a></p></td>
+<td><p>Automatische Client-Anmeldung</p></td>
+<td><p>Für jede unterstützte SIP-Domäne einen SRV-Eintrag für _sipinternaltls._tcp. &lt; Domäne über Port 5061, der dem FQDN des Standard Edition-Servers zu ordnet, der Clientanforderungen zur Anmeldung authentifiziert und &gt; umleitt. Details finden Sie unter <a href="lync-server-2013-dns-requirements-for-automatic-client-sign-in.md">DNS-Anforderungen für die automatische Client-Anmeldung in Lync Server 2013.</a></p></td>
 </tr>
 <tr class="odd">
 <td><p>Device Update Web Service Discovery by Unified Communications (UC)-Geräte</p></td>
-<td><p>Ein interner A-Eintrag mit dem Namen "ucupdates-r2". &lt; &gt; SIP-Domäne, die in die IP-Adresse des Standard Edition-Serverhosting-Geräteupdate-Webdiensts aufgelöst wird. Wenn ein UC-Gerät aktiviert ist, sich ein Benutzer aber noch nie beim Gerät angemeldet hat, ermöglicht der A-Eintrag dem Gerät, den Serverhostingwebdienst für Geräteaktualisierungen zu ermitteln und Updates zu erhalten. Andernfalls rufen Geräte die Serverinformationen über die In-Band-Bereitstellung ab, wenn sich der Benutzer das erste Mal anmeldet. Ausführliche Informationen finden Sie in der Dokumentation zu Vorgängen unter "Webdienst für <a href="lync-server-2013-device-update-web-service.md">Geräteaktualisierung" in Lync Server 2013.</a></p></td>
+<td><p>Ein interner A-Eintrag mit dem Namen ucupdates-r2. &lt; &gt; SIP-Domäne, die auf die IP-Adresse des Standard Edition-Serverhosting-Geräteupdatewebdiensts aufgelöst wird. In der Situation, in der ein UC-Gerät aktiviert ist, sich ein Benutzer aber noch nie beim Gerät angemeldet hat, ermöglicht der A-Eintrag dem Gerät, den Serverhosting-Geräteupdatewebdienst zu ermitteln und Updates zu erhalten. Andernfalls rufen Geräte die Serverinformationen über die In-Band-Bereitstellung ab, wenn sich der Benutzer das erste Mal anmeldet. Ausführliche Informationen finden Sie unter <a href="lync-server-2013-device-update-web-service.md">Geräteupdatewebdienst in Lync Server 2013</a> in der Dokumentation "Vorgänge".</p></td>
 </tr>
 <tr class="even">
 <td><p>Ein Reverseproxy zur Unterstützung von HTTP-Datenverkehr</p></td>
-<td><p>Ein externer A-Eintrag, der den FQDN der externen Webfarm in die externe IP-Adresse des Reverseproxys aufhebt. Clients und UC-Geräte verwenden diesen Eintrag, um eine Verbindung mit dem Reverseproxy herzustellen. Ausführliche Informationen finden Sie in der Dokumentation zur Planung unter "Ermitteln der DNS-Anforderungen für <a href="lync-server-2013-determine-dns-requirements.md">Lync Server 2013".</a></p></td>
+<td><p>Ein externer A-Eintrag, der den FQDN der externen Webfarm in die externe IP-Adresse des Reverseproxys aufhebt. Clients und UC-Geräte verwenden diesen Eintrag, um eine Verbindung mit dem Reverseproxy herzustellen. Ausführliche Informationen finden Sie <a href="lync-server-2013-determine-dns-requirements.md">unter Ermitteln der DNS-Anforderungen für Lync Server 2013</a> in der Dokumentation "Planung".</p></td>
 </tr>
 </tbody>
 </table>
@@ -88,7 +88,7 @@ In der folgenden Tabelle sind die DNS-Anforderungen für die Serverbereitstellun
 ## <a name="see-also"></a>Siehe auch
 
 
-[DNS-Anforderungen für die automatische Client anmeldung bei Lync Server 2013](lync-server-2013-dns-requirements-for-automatic-client-sign-in.md)  
+[DNS-Anforderungen für die automatische Client-Anmeldung in Lync Server 2013](lync-server-2013-dns-requirements-for-automatic-client-sign-in.md)  
 [Ermitteln von DNS-Anforderungen für Lync Server 2013](lync-server-2013-determine-dns-requirements.md)  
 
 
